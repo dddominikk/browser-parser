@@ -1,0 +1,36 @@
+{
+  "name": "browser-parser",
+  "description": "Capture a typed context report from the current supported browser tab.",
+  "version": "0.1.0",
+  "type": "module",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dddominikk/browser-parser.git"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "devDependencies": {
+    "@opengsd/gsd-core": "^1.6.1",
+    "@types/node": "^26.1.0",
+    "tsdown": "^0.22.3",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=25"
+  },
+  "scripts": {
+    "source:import": "node --input-type=module --eval \"await import('./src/index.ts')\"",
+    "test": "node --test tests/*.test.ts",
+    "typecheck": "node node_modules/typescript/bin/tsc --noEmit",
+    "validate": "npm run source:import && npm run test && npm run typecheck"
+  }
+}

@@ -32,12 +32,12 @@
 
 ### Bookmarklets and Gist Deployment
 
-- [ ] **BOOK-01**: One shared generator produces deterministic, single-line, `javascript:` bookmarklets with synchronous report-window creation, popup handling, loading/error rendering, export validation, and capture invocation.
-- [ ] **BOOK-02**: `npm run build:public-ts-bookmarklet` produces `dist/public-bookmarklet.js` using the repository-derived public esm.sh source URL and documents this path as legacy/migration-only after privatization.
-- [ ] **BOOK-03**: `npm run build:private-gist-mjs-bundle-bookmarklet` reads configured gist data, fails early on malformed configuration, fetches with `cache: "no-store"`, imports a `text/javascript` Blob object URL, validates `captureCurrentTab`, revokes the URL, and renders all load failures in the report tab.
-- [ ] **BOOK-04**: Both variants contain no captured values or independently maintained inline source; the root bookmarklet is either a generated compatibility copy or explicitly replaced during implementation.
-- [ ] **DEP-01**: `npm run deploy:mjs-bundle-gist` builds first, validates configuration and authentication, updates or creates only the configured file in the existing gist, preserves unrelated gist files, rejects inaccessible gists without creating replacements, and verifies remote content/checksum.
-- [ ] **DEP-02**: Deployment command execution is injectable for tests, and deployment/build logs never expose cookie values, bundle secrets, or the full private raw URL.
+- [x] **BOOK-01**: One shared generator produces deterministic, single-line, `javascript:` bookmarklets with synchronous report-window creation, popup handling, loading/error rendering, export validation, and capture invocation.
+- [x] **BOOK-02**: `npm run build:public-ts-bookmarklet` produces `dist/public-bookmarklet.js` using the repository-derived public esm.sh source URL and documents this path as legacy/migration-only after privatization.
+- [x] **BOOK-03**: `npm run build:private-gist-mjs-bundle-bookmarklet` reads configured gist data, fails early on malformed configuration, fetches with `cache: "no-store"`, imports a `text/javascript` Blob object URL, validates `captureCurrentTab`, revokes the URL, and renders all load failures in the report tab.
+- [x] **BOOK-04**: Both variants contain no captured values or independently maintained inline source; the root bookmarklet is either a generated compatibility copy or explicitly replaced during implementation.
+- [x] **DEP-01**: `npm run deploy:mjs-bundle-gist` builds first, validates configuration and authentication, updates or creates only the configured file in the existing gist, preserves unrelated gist files, rejects inaccessible gists without creating replacements, and verifies remote content/checksum.
+- [x] **DEP-02**: Deployment command execution is injectable for tests, and deployment/build logs never expose cookie values, bundle secrets, or the full private raw URL.
 
 ### CI, Documentation, and Privacy Transition
 
@@ -75,8 +75,8 @@ Deferred and acknowledged, but not part of this milestone:
 | CAP-01–CAP-09 | Phase 1 | Complete |
 | REP-01–REP-03 | Phase 1 | Complete |
 | BND-01–BND-04 | Phase 2 | Complete |
-| BOOK-01–BOOK-04 | Phase 3 | Pending |
-| DEP-01–DEP-02 | Phase 3 | Pending |
+| BOOK-01–BOOK-04 | Phase 3 | Complete |
+| DEP-01–DEP-02 | Phase 3 | Complete |
 | CI-01–CI-02 | Phase 4 | Pending |
 | DOC-01 | Phase 4 | Pending |
 | PRIV-01 | Phase 4 | Pending |

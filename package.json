@@ -18,6 +18,14 @@
   "files": [
     "src"
   ],
+  "config": {
+    "deployments": {
+      "bundle": {
+        "gist": "",
+        "filename": "esnext.bundle.mjs"
+      }
+    }
+  },
   "devDependencies": {
     "@opengsd/gsd-core": "^1.6.1",
     "@types/node": "^26.1.0",
@@ -32,6 +40,9 @@
     "test": "node --test tests/*.test.ts",
     "typecheck": "node node_modules/typescript/bin/tsc --noEmit",
     "build:mjs-bundle": "tsdown --config tsdown.config.ts && node scripts/validate-mjs-bundle.ts",
+    "build:public-ts-bookmarklet": "node scripts/build-public-bookmarklet.ts",
+    "build:private-gist-mjs-bundle-bookmarklet": "node scripts/build-private-gist-mjs-bundle-bookmarklet.ts",
+    "deploy:mjs-bundle-gist": "node scripts/deploy-mjs-bundle-gist.ts",
     "validate": "npm run source:import && npm run test && npm run typecheck"
   }
 }

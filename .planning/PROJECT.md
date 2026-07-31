@@ -23,8 +23,8 @@ A user can run one small bookmarklet and receive a reliable, typed, serializable
 - [x] Generic capture is combined with optional specialized-parser output without losing generic data — validated in Phase 1.
 - [x] Capture is asynchronous and supports asynchronous specialized parsers — validated in Phase 1.
 - [x] A deterministic, self-contained browser ESM bundle is generated in `dist/` — validated in Phase 2.
-- [ ] Public-source and private-secret-gist bookmarklets are generated from one shared implementation.
-- [ ] An explicit authenticated command updates only the configured secret-gist bundle file.
+- [x] Public-source and private-secret-gist bookmarklets are generated from one shared implementation — validated in Phase 3.
+- [x] An explicit authenticated command updates only the configured secret-gist bundle file — automated behavior validated in Phase 3; authenticated smoke remains privacy-gated.
 - [ ] CI validates and publishes the bundle artifact on every push to `main` without exposing private deployment data.
 - [ ] Documentation and validation cover the transition from public source delivery to private repository delivery.
 

@@ -8,7 +8,7 @@ This milestone evolves the Asana-first walking skeleton into a general browser-p
 
 - [x] **Phase 1: Generic Capture and Specialized Orchestration** — Always capture generic page context, then optionally enrich it with the existing specialized parser and render one combined result.
 - [x] **Phase 2: Deterministic Single-File ESM Bundle** — Build and validate one self-contained browser ESM artifact without disturbing other generated outputs or source exports.
-- [ ] **Phase 3: Bookmarklet Generation and Secret-Gist Deployment** — Generate both loader variants from shared source and deploy the bundle idempotently to a configured secret gist.
+- [x] **Phase 3: Bookmarklet Generation and Secret-Gist Deployment** — Generate both loader variants from shared source and deploy the bundle idempotently to a configured secret gist.
 - [ ] **Phase 4: CI, Documentation, and Privacy-Transition Validation** — Automate public bundle validation, document both delivery paths, repair scoped hygiene, and prove the privacy boundary.
 
 ## Phase Details
@@ -60,8 +60,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: Extract shared bookmarklet generation and implement public/private build commands with configuration validation.
-- [ ] 03-02: Implement explicit gist deployment and test/configure the authenticated deployment path.
+- [x] 03-01: Extract shared bookmarklet generation and implement public/private build commands with configuration validation.
+- [x] 03-02: Implement explicit gist deployment and test/configure the authenticated deployment path.
 
 ### Phase 4: CI, Documentation, and Privacy-Transition Validation
 
@@ -89,5 +89,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Generic Capture and Specialized Orchestration | 2/2 | Complete | 2026-07-31 |
 | 2. Deterministic Single-File ESM Bundle | 2/2 | Complete | 2026-07-31 |
-| 3. Bookmarklet Generation and Secret-Gist Deployment | 0/2 | Not started | - |
+| 3. Bookmarklet Generation and Secret-Gist Deployment | 2/2 | Complete | 2026-07-31 |
 | 4. CI, Documentation, and Privacy-Transition Validation | 0/2 | Not started | - |

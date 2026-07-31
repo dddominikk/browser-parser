@@ -55,9 +55,16 @@ if (import.meta.main) {
         config,
         run: ghRunner(root),
         build: async () => {
-            const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+            const command = process.platform === 'win32' ? (process.env.ComSpec ?? 'cmd.exe') : 'npm';
+            const args = process.platform === 'win32'
+                ? ['/d', '/s', '/c', 'npm.cmd run build:mjs-bundle']
+                : ['run', 'build:mjs-bundle'];
             await new Promise<void>((resolvePromise, reject) => {
-                const child = spawn(npm, ['run', 'build:mjs-bundle'], { cwd: root, stdio: 'inherit', windowsHide: true });
+                const child = spawn(command, args, {
+                    cwd: root,
+                    stdio: 'inherit',
+                    windowsHide: true,
+                });
                 child.on('error', reject);
                 child.on('close', code => code === 0 ? resolvePromise() : reject(new Error(`Bundle build failed with code ${code}.`)));
             });

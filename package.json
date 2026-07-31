@@ -21,7 +21,7 @@
   "config": {
     "deployments": {
       "bundle": {
-        "gist": "",
+        "gist": "375cae0aeda17298b01e59cf054b566b",
         "filename": "esnext.bundle.mjs"
       }
     }

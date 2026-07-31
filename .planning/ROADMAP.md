@@ -7,7 +7,7 @@ This milestone evolves the Asana-first walking skeleton into a general browser-p
 ## Phases
 
 - [x] **Phase 1: Generic Capture and Specialized Orchestration** — Always capture generic page context, then optionally enrich it with the existing specialized parser and render one combined result.
-- [ ] **Phase 2: Deterministic Single-File ESM Bundle** — Build and validate one self-contained browser ESM artifact without disturbing other generated outputs or source exports.
+- [x] **Phase 2: Deterministic Single-File ESM Bundle** — Build and validate one self-contained browser ESM artifact without disturbing other generated outputs or source exports.
 - [ ] **Phase 3: Bookmarklet Generation and Secret-Gist Deployment** — Generate both loader variants from shared source and deploy the bundle idempotently to a configured secret gist.
 - [ ] **Phase 4: CI, Documentation, and Privacy-Transition Validation** — Automate public bundle validation, document both delivery paths, repair scoped hygiene, and prove the privacy boundary.
 
@@ -43,8 +43,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: Add the exact tsdown configuration/build command and generated-output policy.
-- [ ] 02-02: Add bundle validation/smoke tests for determinism, contents, imports, exports, and output preservation.
+- [x] 02-01: Add the exact tsdown configuration/build command and generated-output policy.
+- [x] 02-02: Add bundle validation/smoke tests for determinism, contents, imports, exports, and output preservation.
 
 ### Phase 3: Bookmarklet Generation and Secret-Gist Deployment
 
@@ -88,6 +88,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Generic Capture and Specialized Orchestration | 2/2 | Complete | 2026-07-31 |
-| 2. Deterministic Single-File ESM Bundle | 0/2 | Not started | - |
+| 2. Deterministic Single-File ESM Bundle | 2/2 | Complete | 2026-07-31 |
 | 3. Bookmarklet Generation and Secret-Gist Deployment | 0/2 | Not started | - |
 | 4. CI, Documentation, and Privacy-Transition Validation | 0/2 | Not started | - |

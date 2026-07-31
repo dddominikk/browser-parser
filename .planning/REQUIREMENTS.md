@@ -25,10 +25,10 @@
 
 ### Deterministic Bundle
 
-- [ ] **BND-01**: `npm run build:mjs-bundle` uses the existing `tsdown` dependency and produces exactly `dist/esnext.bundle.mjs` from `src/index.ts`.
-- [ ] **BND-02**: The bundle is browser-targeted ESM with `esnext` syntax, one entry, code splitting disabled, no runtime externals, no declarations, no accidental timestamps, and no removal of public exports or registered built-ins.
-- [ ] **BND-03**: Bundle validation proves one emitted file, deterministic repeated output, no `.ts` specifiers, no unresolved relative imports, successful module import, and expected exports including `captureCurrentTab`, `registerParser`, and built-in parsers.
-- [ ] **BND-04**: Bundle creation does not erase bookmarklet outputs, does not include tests/planning/scripts/examples/fixtures, does not redirect package source exports, and keeps generated `dist/` output ignored.
+- [x] **BND-01**: `npm run build:mjs-bundle` uses the existing `tsdown` dependency and produces exactly `dist/esnext.bundle.mjs` from `src/index.ts`.
+- [x] **BND-02**: The bundle is browser-targeted ESM with `esnext` syntax, one entry, code splitting disabled, no runtime externals, no declarations, no accidental timestamps, and no removal of public exports or registered built-ins.
+- [x] **BND-03**: Bundle validation proves one emitted file, deterministic repeated output, no `.ts` specifiers, no unresolved relative imports, successful module import, and expected exports including `captureCurrentTab`, `registerParser`, and built-in parsers.
+- [x] **BND-04**: Bundle creation does not erase bookmarklet outputs, does not include tests/planning/scripts/examples/fixtures, does not redirect package source exports, and keeps generated `dist/` output ignored.
 
 ### Bookmarklets and Gist Deployment
 
@@ -74,7 +74,7 @@ Deferred and acknowledged, but not part of this milestone:
 |-------------|-------|--------|
 | CAP-01–CAP-09 | Phase 1 | Complete |
 | REP-01–REP-03 | Phase 1 | Complete |
-| BND-01–BND-04 | Phase 2 | Pending |
+| BND-01–BND-04 | Phase 2 | Complete |
 | BOOK-01–BOOK-04 | Phase 3 | Pending |
 | DEP-01–DEP-02 | Phase 3 | Pending |
 | CI-01–CI-02 | Phase 4 | Pending |

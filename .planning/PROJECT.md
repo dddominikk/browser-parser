@@ -19,9 +19,9 @@ A user can run one small bookmarklet and receive a reliable, typed, serializable
 
 ### Active
 
-- [ ] Generic page metadata and script-visible cookies are captured on every ordinary-page invocation.
-- [ ] Generic capture is combined with optional specialized-parser output without losing generic data.
-- [ ] Capture is asynchronous and supports asynchronous specialized parsers.
+- [x] Generic page metadata and script-visible cookies are captured on every ordinary-page invocation — validated in Phase 1.
+- [x] Generic capture is combined with optional specialized-parser output without losing generic data — validated in Phase 1.
+- [x] Capture is asynchronous and supports asynchronous specialized parsers — validated in Phase 1.
 - [ ] A deterministic, self-contained browser ESM bundle is generated in `dist/`.
 - [ ] Public-source and private-secret-gist bookmarklets are generated from one shared implementation.
 - [ ] An explicit authenticated command updates only the configured secret-gist bundle file.

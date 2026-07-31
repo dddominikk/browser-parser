@@ -1,0 +1,8 @@
+{
+  "workflow": {
+    "research": false,
+    "code_review_depth": "quick",
+    "skip_discuss": true,
+    "auto_advance": true
+  }
+}

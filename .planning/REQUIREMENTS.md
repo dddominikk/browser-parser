@@ -7,21 +7,21 @@
 
 ### Generic Capture and Orchestration
 
-- [ ] **CAP-01**: `captureCurrentTab()` returns `Promise<CaptureResult>` and bookmarklet callers handle fulfilled and rejected captures through the existing report failure surface.
-- [ ] **CAP-02**: Every invocation captures generic page data before selecting the explicit built-in/extension specialized registry; the generic parser is never registered as a specialized parser and the existing first matching parser wins.
-- [ ] **CAP-03**: Generic data includes `href`, all requested URL components, title, referrer, language, charset, exposed content type, ready state, and exposed last-modified value.
-- [ ] **CAP-04**: Generic data preserves every current `<meta>` record in source order and captures canonical, alternate, manifest, and icon metadata-bearing links as plain strings.
-- [ ] **CAP-05**: Generic data maps viewport, device-pixel-ratio, screen, available-screen, color-depth, pixel-depth, and first navigation timing values into JSON-safe records.
-- [ ] **CAP-06**: Cookie Store cookies are mapped into stable plain records with exposed fields such as name, value, domain, path, expires, secure, sameSite, and partitioned.
-- [ ] **CAP-07**: Cookie Store absence or failure locally records stable diagnostics, attempts the `document.cookie` fallback where possible, preserves all other metadata, returns an empty list if both paths fail, and never logs cookie values.
-- [ ] **CAP-08**: The combined result has `capturedAt`, `status`, `page`, `specialized`, and `diagnostics`; no specialized match is normal, specialized warnings produce partial data, and specialized exceptions produce `SPECIALIZED_PARSER_FAILED` without erasing generic data.
-- [ ] **CAP-09**: Specialized parser `parse()` methods may return either a value or a promise, while existing synchronous parsers remain valid and specialized target-not-visible results remain non-fatal to generic capture.
+- [x] **CAP-01**: `captureCurrentTab()` returns `Promise<CaptureResult>` and bookmarklet callers handle fulfilled and rejected captures through the existing report failure surface.
+- [x] **CAP-02**: Every invocation captures generic page data before selecting the explicit built-in/extension specialized registry; the generic parser is never registered as a specialized parser and the existing first matching parser wins.
+- [x] **CAP-03**: Generic data includes `href`, all requested URL components, title, referrer, language, charset, exposed content type, ready state, and exposed last-modified value.
+- [x] **CAP-04**: Generic data preserves every current `<meta>` record in source order and captures canonical, alternate, manifest, and icon metadata-bearing links as plain strings.
+- [x] **CAP-05**: Generic data maps viewport, device-pixel-ratio, screen, available-screen, color-depth, pixel-depth, and first navigation timing values into JSON-safe records.
+- [x] **CAP-06**: Cookie Store cookies are mapped into stable plain records with exposed fields such as name, value, domain, path, expires, secure, sameSite, and partitioned.
+- [x] **CAP-07**: Cookie Store absence or failure locally records stable diagnostics, attempts the `document.cookie` fallback where possible, preserves all other metadata, returns an empty list if both paths fail, and never logs cookie values.
+- [x] **CAP-08**: The combined result has `capturedAt`, `status`, `page`, `specialized`, and `diagnostics`; no specialized match is normal, specialized warnings produce partial data, and specialized exceptions produce `SPECIALIZED_PARSER_FAILED` without erasing generic data.
+- [x] **CAP-09**: Specialized parser `parse()` methods may return either a value or a promise, while existing synchronous parsers remain valid and specialized target-not-visible results remain non-fatal to generic capture.
 
 ### Report and Safety
 
-- [ ] **REP-01**: The existing renderer presents outcome, identity/URL, document metadata, meta records, links, viewport/screen, navigation timing, cookies, conditional specialized output, diagnostics, and complete formatted JSON.
-- [ ] **REP-02**: Captured strings, including hostile metadata, cookie values, and specialized strings, are inserted through inert DOM APIs; no captured value can create executable markup or attributes.
-- [ ] **REP-03**: The cookie section carries an explicit sensitivity warning, and the report distinguishes no match, specialized success, specialized partial data, and specialized failure.
+- [x] **REP-01**: The existing renderer presents outcome, identity/URL, document metadata, meta records, links, viewport/screen, navigation timing, cookies, conditional specialized output, diagnostics, and complete formatted JSON.
+- [x] **REP-02**: Captured strings, including hostile metadata, cookie values, and specialized strings, are inserted through inert DOM APIs; no captured value can create executable markup or attributes.
+- [x] **REP-03**: The cookie section carries an explicit sensitivity warning, and the report distinguishes no match, specialized success, specialized partial data, and specialized failure.
 
 ### Deterministic Bundle
 
@@ -72,8 +72,8 @@ Deferred and acknowledged, but not part of this milestone:
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CAP-01–CAP-09 | Phase 1 | Pending |
-| REP-01–REP-03 | Phase 1 | Pending |
+| CAP-01–CAP-09 | Phase 1 | Complete |
+| REP-01–REP-03 | Phase 1 | Complete |
 | BND-01–BND-04 | Phase 2 | Pending |
 | BOOK-01–BOOK-04 | Phase 3 | Pending |
 | DEP-01–DEP-02 | Phase 3 | Pending |

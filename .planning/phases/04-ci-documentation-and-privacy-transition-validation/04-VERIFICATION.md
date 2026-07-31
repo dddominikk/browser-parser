@@ -22,6 +22,6 @@ CI-01, CI-02, DOC-01, and HY-01 are satisfied by the implementation and automate
 
 1. Accept the repository-privacy transition and provide the production gist configuration outside committed files.
 2. Run the authenticated deployment/private-loader smoke, verifying the configured file, checksum, unrelated-file preservation, and private report load without publishing private artifacts.
-3. Run bookmarklet smoke in current Chrome and Edge for popup timing, generic capture, Asana enrichment, report inertness, cookies, public/private loading, and CSP/popup limitations. Record unavailable browser surfaces as limitations.
+3. Run bookmarklet smoke in current Edge for popup timing, generic capture, Asana enrichment, report inertness, cookies, public/private loading, and CSP/popup limitations.
 
 Phase 4 is intentionally not marked passed until these gates have evidence.

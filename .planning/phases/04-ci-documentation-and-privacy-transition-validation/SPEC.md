@@ -17,7 +17,7 @@ README and relevant docs explain always-run generic capture, optional specialize
 - Remove only the existing `.gitignore` conflict markers and add the `dist/` ignore rule.
 - Scan public tracked/configured outputs for real gist IDs, raw URLs, private bookmarklet source, and secret values before any public merge.
 - After repository privacy is explicitly accepted, perform the authenticated gist smoke test and private-loader check without publishing private output.
-- Run complete tests/typecheck/bundle checks and current Chrome/Edge smoke checks. Record unavailable browsers or CSP/popup restrictions as limitations, never passes.
+- Run complete tests/typecheck/bundle checks and current Edge smoke checks. Record CSP/popup restrictions as limitations, never passes.
 
 ## Non-Goals
 

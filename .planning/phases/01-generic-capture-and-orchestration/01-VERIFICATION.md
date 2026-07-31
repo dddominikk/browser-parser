@@ -26,4 +26,4 @@ CAP-01 through CAP-09 and REP-01 through REP-03 are implemented and verified by 
 
 ## Human Verification
 
-Deferred to Phase 4 for Chrome/Edge popup, generic-page, Asana, cookie, CSP, and report smoke checks.
+Deferred to Phase 4 for Edge popup, generic-page, Asana, cookie, CSP, and report smoke checks.

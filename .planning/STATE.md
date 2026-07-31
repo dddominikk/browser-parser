@@ -29,4 +29,4 @@ See the current project context in `.planning/PROJECT.md`.
 
 ## Next Action
 
-Complete the human-needed Phase 4 gates in `04-VERIFICATION.md`: accept repository privacy, run the authenticated secret-gist/private-loader smoke, and record current Chrome/Edge bookmarklet smoke. The authoritative brief was removed only after all four phase specifications, contexts, and plans had been reviewed and its constraints propagated.
+Complete the human-needed Phase 4 gates in `04-VERIFICATION.md`: accept repository privacy, run the authenticated secret-gist/private-loader smoke, and record current Edge bookmarklet smoke. The authoritative brief was removed only after all four phase specifications, contexts, and plans had been reviewed and its constraints propagated.

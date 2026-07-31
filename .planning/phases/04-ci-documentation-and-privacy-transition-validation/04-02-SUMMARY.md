@@ -10,4 +10,4 @@
 ## Release Gates Still Requiring Evidence
 
 - An authenticated deployment against the production secret gist requires explicit privacy acceptance and a configured production gist ID; neither is committed here.
-- Current Chrome/Edge bookmarklet smoke coverage must be recorded from the available browser surfaces. Browser availability and CSP/popup restrictions must be reported as limitations, not passes.
+- Current Edge bookmarklet smoke coverage must be recorded. CSP/popup restrictions must be reported as limitations, not passes.

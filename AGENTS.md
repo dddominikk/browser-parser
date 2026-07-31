@@ -6,7 +6,7 @@
 
 Browser Parser is a TypeScript package for extracting structured context from the currently open browser tab and presenting the result in a separate report tab. It is loaded by a minimal bookmarklet directly from the public GitHub repository through esm.sh, with Asana supplied as the first built-in parser and an exported registry available for third-party parsers.
 
-The initial release targets current Chrome and Edge. It treats page DOM content as untrusted input, reports partial extraction explicitly, and keeps the runtime dependency-free.
+The initial release targets current desktop Edge only. It treats page DOM content as untrusted input, reports partial extraction explicitly, and keeps the runtime dependency-free.
 
 **Core Value:** A user can run a tiny bookmarklet on a supported page and reliably receive a typed, serializable context report without installing an extension or configuring a backend.
 
@@ -16,11 +16,11 @@ The initial release targets current Chrome and Edge. It treats page DOM content 
 - **Runtime dependencies**: None for v1; do not add any dependency without consulting the project owner.
 - **Browser delivery**: The bookmarklet dynamically imports the latest default-branch module through esm.sh and calls `captureCurrentTab()`.
 - **Bookmarklet size**: Keep the inline bookmarklet limited to loading and invoking the package; all substantive behavior belongs in the package.
-- **Browser compatibility**: Support current Chrome and Edge first.
+- **Browser compatibility**: Support current desktop Edge only for now.
 - **Data boundary**: Parsers operate on the rendered DOM and return serializable data without retaining DOM nodes.
 - **Error model**: Unsupported pages, partial extraction, popup blocking, and other expected failures use a typed result with structured diagnostics.
 - **Security**: Treat extracted text and metadata as untrusted; report rendering must avoid executable HTML injection.
-- **Testing**: Use Node's built-in test runner for portable core logic, dependency-free browser fixture pages for DOM behavior, and manual Chrome/Edge smoke checks.
+- **Testing**: Use Node's built-in test runner for portable core logic, dependency-free browser fixture pages for DOM behavior, and manual Edge smoke checks.
 - **Repository hygiene**: Preserve unrelated user changes and replace inherited package metadata only when implementation begins.
 
 <!-- GSD:project-end -->
@@ -37,7 +37,7 @@ The initial release targets current Chrome and Edge. It treats page DOM content 
 
 | Technology | Exact baseline | Purpose | Why |
 |------------|----------------|---------|-----|
-| Browser Web APIs | Chrome 150 and Edge 150 stable at research time; policy is current stable Chrome/Edge | Production execution, DOM extraction, report tab | Both targets are Chromium and natively support dynamic `import()`, ESM, modern DOM APIs, `URL`, and async functions. No browser polyfill is needed. |
+| Browser Web APIs | Current Edge desktop; Edge 150 stable at research time | Production execution, DOM extraction, report tab | Edge natively supports dynamic `import()`, ESM, modern DOM APIs, `URL`, and async functions. No browser polyfill is needed. |
 | esm.sh GitHub registry | `https://esm.sh/gh/dddominikk/browser-parser?target=es2022` | Transform the GitHub TypeScript entry into browser-loadable ESM | Officially supports `/gh/{owner}/{repo}`, package exports, commit/tag refs, and on-the-fly `.ts` transformation. `target=es2022` makes emitted syntax deterministic across the two current Chromium targets. |
 | Node.js | 25.2.0 or newer for local development/CI and package runtime | Native `.ts` execution and built-in tests | The project requires Node 25 or newer; use an available verified executable and keep type stripping syntax erasable. |
 | TypeScript | 6.0.3 for v1 | Static type checking and optional fixture-only JS emit | Already present, satisfies Node's `>=5.8` guidance, and understands every required type-stripping option. TypeScript 7.0.2 is current but was released only days before this research and introduces a new native toolchain with no compiler API; it adds migration risk without v1 product value. Revisit after v1. |
@@ -61,8 +61,8 @@ The initial release targets current Chrome and Edge. It treats page DOM content 
 | `node:assert/strict` | Built into Node 25+ | Assertions | Use directly; do not add Vitest, Jest, Chai, or assertion helpers. |
 | `tsc` | TypeScript 6.0.3 | Typecheck all source and tests | Keep as the only general development compiler. Use a separate emit config only for local browser fixture smoke tests. |
 | `@types/node` | 26.1.0 | Types for test files and Node-only fixture tooling | Scope these types to the test/tooling config so production source cannot accidentally depend on Node globals. |
-| Static HTML fixtures | Repository files | Real-DOM parser and report checks | Maintain representative sanitized Asana fixture pages and a dependency-free test harness. Load in Chrome/Edge through a tiny Node static server. |
-| Manual browser smoke matrix | Chrome 150 + Edge 150 at research time | Popup, CSP, module load, selector, and report behavior | Required for v1 because Node has no DOM and no browser automation dependency is approved. Record pass/fail and browser versions in the phase verification artifact. |
+| Static HTML fixtures | Repository files | Real-DOM parser and report checks | Maintain representative sanitized Asana fixture pages and a dependency-free test harness. Load in Edge through a tiny Node static server. |
+| Manual browser smoke matrix | Edge 150 at research time | Popup, CSP, module load, selector, and report behavior | Required for v1 because Node has no DOM and no browser automation dependency is approved. Record pass/fail and Edge version in the phase verification artifact. |
 
 ## Package and Export Shape
 
@@ -117,8 +117,8 @@ The initial release targets current Chrome and Edge. It treats page DOM content 
 | Category | Recommended | Alternative | Why Not |
 |----------|-------------|-------------|---------|
 | Browser runtime | Native DOM/Web APIs | React, Preact, Lit | Report is small and static; a UI framework adds runtime weight and another CDN graph. |
-| DOM testing | Static fixtures in Chrome/Edge | jsdom, happy-dom | New dependency, incomplete browser fidelity, and explicitly outside the dependency constraint. |
-| Browser automation | Manual Chrome/Edge smoke for v1 | Playwright, Puppeteer, WebDriver packages | Valuable later, but adding one now violates the selected no-new-dependency strategy. |
+| DOM testing | Static fixtures in Edge | jsdom, happy-dom | New dependency, incomplete browser fidelity, and explicitly outside the dependency constraint. |
+| Browser automation | Manual Edge smoke for v1 | Playwright, Puppeteer, WebDriver packages | Valuable later, but adding one now violates the selected no-new-dependency strategy. |
 | Node TS execution | Native type stripping | `tsx`, `ts-node` | Node 25+ executes erasable `.ts`; loaders would duplicate the runtime contract. |
 | Test framework | `node:test` + `node:assert/strict` | Vitest/Jest | Node's built-in runner discovers TypeScript tests and is sufficient for the package's pure core. |
 | Build/bundle | esm.sh in production; fixture-only `tsc` emit | `tsdown`, Rollup, esbuild | A checked-in production bundle is not needed for the specified GitHub-to-esm.sh delivery. |
@@ -134,7 +134,7 @@ The initial release targets current Chrome and Edge. It treats page DOM content 
 
 | Surface | Supported | Unsupported / caveat |
 |---------|-----------|----------------------|
-| Browser | Current Chrome and Edge desktop; v150 at research time | Firefox, Safari, mobile, browser-internal pages, sandboxed frames, and enterprise policy restrictions are out of v1 scope. |
+| Browser | Current Edge desktop; v150 at research time | Other desktop browsers, Firefox, Safari, mobile, browser-internal pages, sandboxed frames, and enterprise policy restrictions are out of v1 scope. |
 | Browser module load | HTTPS esm.sh URL with CORS, allowed by page CSP | Strict `script-src`/`default-src`, offline use, CDN outage, or an unpublished/private GitHub source prevents loading. |
 | Node development | Node 25+ native type stripping | Node versions below 25 are unsupported by this project. |
 | TypeScript syntax | Erasable syntax only | Enums, parameter properties, runtime namespaces, import aliases, TSX, transform-dependent decorators, paths aliases. |
@@ -159,7 +159,7 @@ The initial release targets current Chrome and Edge. It treats page DOM content 
 - [MDN script modules](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/script) — cross-origin module CORS.
 - [MDN CSP `script-src`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/script-src) — remote script allowlisting and default-src fallback.
 - [MDN `Window.open()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open) — direct user-activation and popup-blocking requirements.
-- [Chrome stable releases](https://chromereleases.googleblog.com/) and [Microsoft Edge stable release notes](https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel) — current browser test baseline.
+- [Microsoft Edge stable release notes](https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel) — current browser test baseline.
 - Live checks on 2026-07-20: `https://esm.sh/gh/microsoft/tslib`, its tagged form, and `https://esm.sh/gh/dddominikk/browser-parser`; plus repository `origin/main` inspection.
 
 ## Confidence Assessment

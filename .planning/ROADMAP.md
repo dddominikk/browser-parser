@@ -73,12 +73,12 @@ Plans:
   1. Every push to `main` and manual dispatch run install, validation, single-file bundle build, bundle smoke checks, chunk assertions, and public bundle artifact upload without committing generated output.
   2. README and related docs accurately describe generic/specialized results, cookie limitations, both bookmarklets, commands/configuration, secret-gist and visibility gates, CSP/popup limits, generated paths, and manual installation without duplicate source.
   3. Scoped `.gitignore` conflict markers are removed, public-tree scans find no production secret gist URL/private bookmarklet, and the private production path is explicitly checked after repository privacy is accepted.
-  4. Full validation plus authenticated gist and current Chrome/Edge smoke checks pass or record unavailable browsers and policy limitations as limitations rather than false passes.
+  4. Full validation plus authenticated gist and current Edge smoke checks pass or record policy limitations as limitations rather than false passes.
 **Plans**: 2 plans
 
 Plans:
 - [x] 04-01: Add main-branch CI, scoped hygiene, and documentation for both delivery paths.
-- [ ] 04-02: Execute privacy-transition, authenticated gist, full validation, and Chrome/Edge smoke verification. Human verification remains required for the production privacy and browser gates.
+- [ ] 04-02: Execute privacy-transition, authenticated gist, full validation, and Edge smoke verification. Human verification remains required for the production privacy and browser gates.
 
 ## Progress
 

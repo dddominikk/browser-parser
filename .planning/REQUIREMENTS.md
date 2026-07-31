@@ -46,7 +46,7 @@
 - [x] **DOC-01**: README and related docs describe generic-versus-specialized capture, result shape, cookie limitations and sensitivity, public/private bookmarklets, commands/configuration, secret-gist limitations, repository-visibility gate, CSP/popup limits, generated paths, and manual installation without duplicating bookmarklet source.
 - [ ] **PRIV-01**: Planning and validation explicitly confirm that the real gist ID/private URL are withheld from public `main` until privacy is accepted, with a production-path check after the repository is private.
 - [x] **HY-01**: The existing `.gitignore` conflict markers are removed as narrowly scoped hygiene, then `dist/` is ignored without unrelated cleanup.
-- [ ] **VAL-01**: Focused unit/report/build/bookmarklet/deployment tests and manual authenticated gist plus Chrome/Edge smoke checks cover the completion criteria and record CSP/popup/browser limitations honestly.
+- [ ] **VAL-01**: Focused unit/report/build/bookmarklet/deployment tests and manual authenticated gist plus Edge smoke checks cover the completion criteria and record CSP/popup/browser limitations honestly.
 
 ## v2 Requirements
 

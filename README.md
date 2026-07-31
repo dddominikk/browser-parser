@@ -70,7 +70,7 @@ Extracted page text, metadata, cookies, and parser output are untrusted. The rep
 
 The repository must be private before production deployment configuration or private bookmarklet artifacts are published. A secret gist is unlisted, not access-controlled: anyone with its URL can retrieve it. CI does not deploy, push, expose the private URL, or upload a private bookmarklet while the repository is public.
 
-Current desktop Chrome and Edge are the first targets. Page CSP can block bookmarklet execution, the esm.sh import, raw gist fetch, Blob import, or popup creation. Browser policy and popup failures are reported; Browser Parser does not bypass CSP or retry another host. The root `bookmarklet.txt` was removed so generated artifacts remain the only bookmarklet source.
+Current desktop Edge is the first and only supported browser target for now. Page CSP can block bookmarklet execution, the esm.sh import, raw gist fetch, Blob import, or popup creation. Browser policy and popup failures are reported; Browser Parser does not bypass CSP or retry another host. The root `bookmarklet.txt` was removed so generated artifacts remain the only bookmarklet source.
 
 ## Manual installation
 

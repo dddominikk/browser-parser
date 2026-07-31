@@ -1,0 +1,42 @@
+name: Build browser bundle
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: browser-parser-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-bundle:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Validate source and tests
+        run: npm run validate
+      - name: Build browser bundle
+        run: npm run build:mjs-bundle
+      - name: Assert single bundle chunk
+        shell: bash
+        run: |
+          test "$(find dist -maxdepth 1 -type f -name '*.mjs' | wc -l)" -eq 1
+          test -f dist/esnext.bundle.mjs
+          node scripts/validate-mjs-bundle.ts
+      - name: Upload public bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: esnext-browser-bundle
+          path: dist/esnext.bundle.mjs
+          if-no-files-found: error

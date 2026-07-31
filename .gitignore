@@ -1,9 +1,9 @@
 node_modules/
+dist/
 
 !.env.example
 .env
 tests/log/assets
-
 
 # GSD transient state
 .planning/cache/
@@ -14,21 +14,3 @@ tests/log/assets
 .planning/**/tmp/
 .planning/**/*.lock
 .planning/**/*.log
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> f60a372398d316fefa62b146979554a73998e65c
-
-
-
-
-
-
-
-
-
-
-

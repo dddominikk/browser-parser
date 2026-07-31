@@ -25,8 +25,8 @@ A user can run one small bookmarklet and receive a reliable, typed, serializable
 - [x] A deterministic, self-contained browser ESM bundle is generated in `dist/` — validated in Phase 2.
 - [x] Public-source and private-secret-gist bookmarklets are generated from one shared implementation — validated in Phase 3.
 - [x] An explicit authenticated command updates only the configured secret-gist bundle file — automated behavior validated in Phase 3; authenticated smoke remains privacy-gated.
-- [ ] CI validates and publishes the bundle artifact on every push to `main` without exposing private deployment data.
-- [ ] Documentation and validation cover the transition from public source delivery to private repository delivery.
+- [x] CI validates and publishes only the public bundle artifact on every push to `main` without exposing private deployment data — implemented in Phase 4.
+- [ ] Documentation and validation cover the transition from public source delivery to private repository delivery — documentation and automated privacy checks are complete; authenticated production and browser smoke gates remain human-needed.
 
 ### Out of Scope
 
@@ -64,7 +64,11 @@ The authoritative milestone brief expands the older always-run generic-parser sl
 | `dist/` is the only generated-output directory | Bundle and both bookmarklets need a shared ignored location | — Pending |
 | The bundle is a single self-contained ESM file | Blob imports from raw gist content cannot resolve relative chunks | — Pending |
 | Public esm.sh and private gist bookmarklets coexist during migration | Public delivery remains useful for diagnostics while private delivery becomes production-oriented | — Pending |
-| Secret-gist deployment is an explicit `gh api` operation | It limits mutation, preserves unrelated gist files, and avoids exposing bundle contents in shell arguments or logs | — Pending |
+| Secret-gist deployment is an explicit `gh api` operation | It limits mutation, preserves unrelated gist files, and avoids exposing bundle contents in shell arguments or logs | Implemented; production execution remains privacy-gated |
+
+## Current Validation Gate
+
+Automated Phase 4 work is complete and public-safe. The milestone remains open until the repository privacy transition is explicitly accepted, an authenticated production gist smoke is recorded, and current Chrome/Edge bookmarklet smoke evidence is added. See `.planning/phases/04-ci-documentation-and-privacy-transition-validation/04-VERIFICATION.md`.
 
 ---
-*Last updated: 2026-07-31 after defining the generic-capture and private-bundle milestone.*
+*Last updated: 2026-07-31 after Phase 4 automated validation.*

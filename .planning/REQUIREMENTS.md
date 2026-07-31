@@ -41,11 +41,11 @@
 
 ### CI, Documentation, and Privacy Transition
 
-- [ ] **CI-01**: A workflow runs on every push to `main` and manual dispatch, installs the supported Node version, runs `npm ci`, validation, bundle build and smoke checks, asserts one bundle chunk, and uploads only the public bundle artifact without deploying.
-- [ ] **CI-02**: CI never commits generated files, pushes, exposes the gist URL, or builds/uploads the private bookmarklet while the repository is public; concurrency cancellation follows repository conventions.
-- [ ] **DOC-01**: README and related docs describe generic-versus-specialized capture, result shape, cookie limitations and sensitivity, public/private bookmarklets, commands/configuration, secret-gist limitations, repository-visibility gate, CSP/popup limits, generated paths, and manual installation without duplicating bookmarklet source.
+- [x] **CI-01**: A workflow runs on every push to `main` and manual dispatch, installs the supported Node version, runs `npm ci`, validation, bundle build and smoke checks, asserts one bundle chunk, and uploads only the public bundle artifact without deploying.
+- [x] **CI-02**: CI never commits generated files, pushes, exposes the gist URL, or builds/uploads the private bookmarklet while the repository is public; concurrency cancellation follows repository conventions.
+- [x] **DOC-01**: README and related docs describe generic-versus-specialized capture, result shape, cookie limitations and sensitivity, public/private bookmarklets, commands/configuration, secret-gist limitations, repository-visibility gate, CSP/popup limits, generated paths, and manual installation without duplicating bookmarklet source.
 - [ ] **PRIV-01**: Planning and validation explicitly confirm that the real gist ID/private URL are withheld from public `main` until privacy is accepted, with a production-path check after the repository is private.
-- [ ] **HY-01**: The existing `.gitignore` conflict markers are removed as narrowly scoped hygiene, then `dist/` is ignored without unrelated cleanup.
+- [x] **HY-01**: The existing `.gitignore` conflict markers are removed as narrowly scoped hygiene, then `dist/` is ignored without unrelated cleanup.
 - [ ] **VAL-01**: Focused unit/report/build/bookmarklet/deployment tests and manual authenticated gist plus Chrome/Edge smoke checks cover the completion criteria and record CSP/popup/browser limitations honestly.
 
 ## v2 Requirements
@@ -77,11 +77,11 @@ Deferred and acknowledged, but not part of this milestone:
 | BND-01–BND-04 | Phase 2 | Complete |
 | BOOK-01–BOOK-04 | Phase 3 | Complete |
 | DEP-01–DEP-02 | Phase 3 | Complete |
-| CI-01–CI-02 | Phase 4 | Pending |
-| DOC-01 | Phase 4 | Pending |
-| PRIV-01 | Phase 4 | Pending |
-| HY-01 | Phase 4 | Pending |
-| VAL-01 | Phase 4 | Pending |
+| CI-01–CI-02 | Phase 4 | Complete |
+| DOC-01 | Phase 4 | Complete |
+| PRIV-01 | Phase 4 | Human verification needed |
+| HY-01 | Phase 4 | Complete |
+| VAL-01 | Phase 4 | Human verification needed |
 
 ### Legacy TODO Reconciliation
 

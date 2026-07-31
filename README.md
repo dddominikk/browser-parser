@@ -1,15 +1,77 @@
 # Browser Parser
 
-Browser Parser captures a small, typed context envelope from the current supported browser tab. Phase 1 supports a visible Asana task pane in current Chrome and Edge.
+Browser Parser captures a typed, serializable report from the currently open ordinary browser page. Generic page capture always runs; an explicitly registered first matching specialized parser may add optional enrichment such as the Asana preview.
 
-## Bookmarklet
+## Delivery paths
 
-Create a bookmark with this exact single-line URL:
+### Public source bookmarklet
+
+Build the migration and diagnostic variant with:
 
 ```text
-javascript:(()=>{const w=window.open('about:blank','browser-parser-report');if(!w){console.error('browser-parser:popup-blocked');return;}const d=w.document,e=(t,id,x)=>{const n=d.createElement(t);if(id)n.id=id;if(x)n.textContent=x;return n;},m=e('main','',''),h=e('header','outcome-block',''),s=e('p','capture-status',''),q=e('p','capture-message','Loading Browser Parser and capturing this tab. Keep this report tab open.'),r=e('div','report-sections','');d.title='Browser Parser — Capture report';d.documentElement.lang='en';m.setAttribute('aria-labelledby','report-title');h.append(e('p','','Browser Parser'),e('h1','report-title','Capture report'));s.setAttribute('role','status');s.setAttribute('aria-live','polite');s.setAttribute('aria-atomic','true');h.append(s,q);m.append(h,r);d.body.replaceChildren(m);s.textContent='Capture status: Loading.';import('https://esm.sh/gh/dddominikk/browser-parser?target=es2022').then(({captureCurrentTab})=>captureCurrentTab({reportWindow:w})).catch(error=>{h.className='status-import-failed';q.textContent='The Browser Parser module did not load. Review the source page console entry prefixed browser-parser:import-failed. Browser Parser does not bypass site policy or retry another host.';r.replaceChildren();s.textContent='Capture status: Import failed.';console.error('browser-parser:import-failed',error);});})()
+npm run build:public-ts-bookmarklet
 ```
 
-The bookmarklet opens one report tab synchronously, then imports the latest default-branch module from esm.sh. A strict site content-security policy can block that import; Browser Parser does not bypass policy or retry another host. A commit-pinned esm.sh URL is for diagnostics only, not normal use.
+This writes `dist/public-bookmarklet.js`, a single-line `javascript:` URL that imports the public repository through:
 
-The public API exports `captureCurrentTab`, `registerParser`, and `asanaParser`. Results are typed plain-data envelopes; the report renders captured values as literal text and leaves captured URLs non-clickable.
+```text
+https://esm.sh/gh/dddominikk/browser-parser?target=es2022
+```
+
+It requires the repository to remain public and reachable by esm.sh. It is retained for migration and diagnostics and is not the recommended production path after repository privatization.
+
+### Private secret-gist bundle bookmarklet
+
+Build the production-oriented variant only in a private/local environment with a configured gist:
+
+```powershell
+$env:BROWSER_PARSER_GIST_ID = '<secret-gist-id>'
+npm run build:private-gist-mjs-bundle-bookmarklet
+Remove-Item Env:BROWSER_PARSER_GIST_ID
+```
+
+The package configuration supplies the filename (`esnext.bundle.mjs`) and repository-derived owner. Environment variables `BROWSER_PARSER_GIST_ID`, `BROWSER_PARSER_GIST_OWNER`, and `BROWSER_PARSER_GIST_FILENAME` can override local configuration. Do not commit a real gist ID or the generated private bookmarklet while the repository is public.
+
+The private bookmarklet opens the report synchronously, fetches the raw gist with `cache: "no-store"`, checks the response, reads the bundle as text, imports a `text/javascript` Blob object URL, validates `captureCurrentTab`, revokes the object URL, and reports load failures in the already-open report tab. It does not rely on the gist response MIME type.
+
+## Capture result
+
+`captureCurrentTab()` returns a promise with this shape:
+
+```ts
+interface CaptureResult {
+  capturedAt: string;
+  status: 'complete' | 'partial' | 'failed';
+  page: GenericPageData;
+  specialized: SpecializedCapture | null;
+  diagnostics: Diagnostic[];
+}
+```
+
+Generic data includes URL components, document fields, source-ordered meta records, canonical/alternate/manifest/icon links, viewport and screen values, first navigation timing, and script-visible cookies. Cookie Store is preferred; `document.cookie` is a less-complete fallback. HttpOnly cookies and cookies outside the page's script-visible scope cannot be captured. Cookie values are sensitive and are shown in the report only behind an explicit warning.
+
+No specialized parser match is normal and does not produce `NO_PARSER_MATCHED`. A matching parser runs after generic capture, and specialized warnings or exceptions cannot erase generic data. The registry remains explicit and first-match wins.
+
+## Build and deployment commands
+
+```text
+npm run validate
+npm run build:mjs-bundle
+npm run build:public-ts-bookmarklet
+npm run build:private-gist-mjs-bundle-bookmarklet
+npm run deploy:mjs-bundle-gist
+```
+
+The bundle command writes exactly `dist/esnext.bundle.mjs`. Generated files under `dist/` are ignored and are not committed by CI. Deployment first rebuilds, requires GitHub CLI authentication and an existing configured gist, updates only the configured filename, preserves unrelated gist files, and verifies the remote checksum. It never creates a replacement gist and is not part of ordinary build CI.
+
+## Security and browser limitations
+
+Extracted page text, metadata, cookies, and parser output are untrusted. The report constructs DOM nodes and inserts captured values as text; it does not interpolate captured values into executable HTML or attributes. Cookie values must not be logged.
+
+The repository must be private before production deployment configuration or private bookmarklet artifacts are published. A secret gist is unlisted, not access-controlled: anyone with its URL can retrieve it. CI does not deploy, push, expose the private URL, or upload a private bookmarklet while the repository is public.
+
+Current desktop Chrome and Edge are the first targets. Page CSP can block bookmarklet execution, the esm.sh import, raw gist fetch, Blob import, or popup creation. Browser policy and popup failures are reported; Browser Parser does not bypass CSP or retry another host. The root `bookmarklet.txt` was removed so generated artifacts remain the only bookmarklet source.
+
+## Manual installation
+
+Run the appropriate build command, copy the complete single-line contents of the generated `.js` file, and paste it as the URL of a browser bookmark. Run it on an ordinary page with the report tab kept open. The public variant is for public-repository use; the private variant is for a locally controlled/private deployment.

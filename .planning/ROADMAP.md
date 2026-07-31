@@ -77,8 +77,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 04-01: Add main-branch CI, scoped hygiene, and documentation for both delivery paths.
-- [ ] 04-02: Execute privacy-transition, authenticated gist, full validation, and Chrome/Edge smoke verification.
+- [x] 04-01: Add main-branch CI, scoped hygiene, and documentation for both delivery paths.
+- [ ] 04-02: Execute privacy-transition, authenticated gist, full validation, and Chrome/Edge smoke verification. Human verification remains required for the production privacy and browser gates.
 
 ## Progress
 
@@ -90,4 +90,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Generic Capture and Specialized Orchestration | 2/2 | Complete | 2026-07-31 |
 | 2. Deterministic Single-File ESM Bundle | 2/2 | Complete | 2026-07-31 |
 | 3. Bookmarklet Generation and Secret-Gist Deployment | 2/2 | Complete | 2026-07-31 |
-| 4. CI, Documentation, and Privacy-Transition Validation | 0/2 | Not started | - |
+| 4. CI, Documentation, and Privacy-Transition Validation | 1/2 | Human verification needed | 2026-07-31 (Plan 04-01) |

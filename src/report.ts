@@ -1,4 +1,5 @@
 import type { CaptureResult, Diagnostic, SpecializedCapture } from './contracts.ts';
+import { renderIframeExplorer } from './iframe.ts';
 
 type ReportNode = {
     id: string;
@@ -138,7 +139,8 @@ export function renderCaptureReport(surface: ReportSurface, result: CaptureResul
     cookieDetails.appendChild(element(document, 'pre', jsonText(result.page.cookies)));
     cookies.appendChild(cookieDetails);
 
-    const sections = [summary, identity, documentData, metadata, links, environment, navigation, cookies];
+    const iframeExplorer = renderIframeExplorer(document as unknown as Document) as unknown as ReportNode;
+    const sections = [iframeExplorer, summary, identity, documentData, metadata, links, environment, navigation, cookies];
     if (result.specialized !== null) sections.push(objectSection(document, 'Specialized parser result', 'specialized-heading', result.specialized));
     if (result.diagnostics.length > 0) {
         const diagnostics = section(document, `Diagnostics (${result.diagnostics.length})`, 'diagnostics-heading');

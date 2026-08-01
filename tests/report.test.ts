@@ -4,22 +4,37 @@ import { adoptOrCreateReportSurface, renderCaptureReport } from '../src/report.t
 import type { CaptureResult } from '../src/contracts.ts';
 
 class Node {
+    readonly tagName: string;
     id = '';
     className = '';
     textContent: string | null = null;
+    type = '';
+    value = '';
+    src = '';
+    title = '';
+    inputMode = '';
+    autocomplete = '';
+    placeholder = '';
+    required = false;
     readonly children: Node[] = [];
     readonly attributes = new Map<string, string>();
+    readonly listeners = new Map<string, ((event: { preventDefault(): void }) => void)[]>();
+
+    constructor(tagName = 'node') { this.tagName = tagName; }
 
     append(...nodes: Node[]): void { this.children.push(...nodes); }
     appendChild(node: Node): Node { this.children.push(node); return node; }
     replaceChildren(...nodes: Node[]): void { this.children.splice(0, this.children.length, ...nodes); }
     setAttribute(name: string, value: string): void { this.attributes.set(name, value); }
+    addEventListener(type: string, listener: (event: { preventDefault(): void }) => void): void {
+        this.listeners.set(type, [...(this.listeners.get(type) ?? []), listener]);
+    }
 }
 
 class Document {
     title = '';
     readonly body = new Node();
-    createElement(): Node { return new Node(); }
+    createElement(tagName: string): Node { return new Node(tagName); }
     getElementById(id: string): Node | null {
         const visit = (node: Node): Node | null => {
             if (node.id === id) return node;

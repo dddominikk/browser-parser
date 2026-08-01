@@ -80,10 +80,30 @@ Plans:
 - [x] 04-01: Add main-branch CI, scoped hygiene, and documentation for both delivery paths.
 - [ ] 04-02: Execute privacy-transition, authenticated gist, full validation, and Edge smoke verification. Human verification remains required for the production privacy and browser gates.
 
+### Phase 5: Embedded Page Metadata Explorer
+
+**Goal**: Add an optional, collapsible miniature browser window to the report tab so users can navigate to an HTTP(S) address and immediately inspect basic metadata from pages whose iframe document is accessible.
+**Depends on**: Phase 1 report surface; independent of Phase 4's external privacy gate
+**Requirements**: IFRAME-01–IFRAME-05
+**UI hint**: yes
+**Scope fence**: No browser extension, network proxy, cross-origin bypass, page-data upload, or new runtime dependency.
+**Success Criteria** (what must be TRUE):
+  1. The report contains a closed-by-default `<details>` explorer with a compact browser-window presentation and an address form.
+  2. Addresses without a scheme are normalized to `https://`; only HTTP(S) navigation is accepted and invalid input produces an inert inline error.
+  3. Successful same-origin iframe loads show URL, title, description, canonical URL, and Open Graph metadata immediately below the iframe.
+  4. Cross-origin/inaccessible documents, load failures, and metadata-read failures show a clear inline error without breaking the main capture report.
+  5. Unit tests cover normalization, metadata extraction, safe text rendering, interaction wiring, and the full validation command remains green.
+
+**Plans**: 1 plan
+
+Plans:
+
+- [x] 05-01: Implement the toggleable iframe explorer, same-origin metadata capture, tests, and user documentation.
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -91,3 +111,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 2. Deterministic Single-File ESM Bundle | 2/2 | Complete | 2026-07-31 |
 | 3. Bookmarklet Generation and Secret-Gist Deployment | 2/2 | Complete | 2026-07-31 |
 | 4. CI, Documentation, and Privacy-Transition Validation | 1/2 | Human verification needed | 2026-07-31 (Plan 04-01) |
+| 5. Embedded Page Metadata Explorer | 1/1 | Complete | 2026-08-01 |

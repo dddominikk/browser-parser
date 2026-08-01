@@ -52,6 +52,12 @@ Generic data includes URL components, document fields, source-ordered meta recor
 
 No specialized parser match is normal and does not produce `NO_PARSER_MATCHED`. A matching parser runs after generic capture, and specialized warnings or exceptions cannot erase generic data. The registry remains explicit and first-match wins.
 
+## Embedded page explorer
+
+The report tab includes a collapsed **Embedded page explorer**. Expand it to open a small browser-like iframe window, enter an address, and select **Go**. A missing scheme is treated as `https://`; only HTTP(S) addresses are accepted.
+
+After a same-origin iframe load, the report shows the resolved URL, document title, description meta tag, canonical link, and Open Graph records immediately below the frame. Browser same-origin policy can prevent the report tab from reading another site's document; those loads are reported as an inline error and are not bypassed. The explorer does not upload page data or alter the main capture result.
+
 ## Build and deployment commands
 
 ```text
